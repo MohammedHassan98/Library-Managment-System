@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const bookController = require('../controllers/BookController')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send("Books Route");
-});
+router.get('/', bookController.getAllBooks)
+
+router.get('/:Id', bookController.getBook)
+
 
 module.exports = router;
