@@ -47,7 +47,8 @@ app.use(function (err, req, res, next) {
 });
 
 // Connect Database
-DB.sync({ force: true })
+// { force: true }
+DB.sync()
   .then(() => {
     console.log("Database is connected")
   })
