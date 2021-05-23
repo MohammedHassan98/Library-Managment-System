@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send("Library Management System App");
+  res.send("Auth Route");
 });
 
 module.exports = router;
