@@ -1,6 +1,6 @@
 const Admin = require('../models/Admin')
 const bcrypt = require('bcryptjs')
-// const JWT = require('jsonwebtoken');
+const JWT = require('jsonwebtoken');
 
 exports.SignUp = (req, res, next) => {
     const Name = req.body.Name;
@@ -22,47 +22,45 @@ exports.SignUp = (req, res, next) => {
 }
 
 
-// exports.SignIn = (req, res, next) => {
-//     const Name = req.body.adminName;
-//     const Mail = req.body.adminMail
-//     const Password = req.body.adminPassword;
+exports.SignIn = (req, res, next) => {
+    const Name = req.body.Name;
+    // const Mail = req.body.Mail
+    const Password = req.body.Password;
 
-//     let loadAdmin;
-//     Admin.findByName(Name)
-//         .then(admin => {
-//             if (!admin) {
-//                 console.log('This Admin Name not Found')
-//                 const adminError = new Error('This Admin Name not Found');
-//                 adminError.statusCode = 401;
-//                 throw  adminError;
-//             }
-//             loadAdmin = admin
-//             return bcrypt.compare(password, admin.password)
-//                 .then(doMatch => {
-//                     if (!doMatch) {
-//                         console.log('Wrong password!')
-//                         const error = new Error('Wrong password!');
-//                         error.statusCode = 401;
-//                         throw error;
-//                     }
-//                     const token = JWT.sign({
-//                         adminName: loadAdmin.name,
-//                         adminId: loadAdmin._id.toString(),
-//                         isLogged: true
-//                     },
-//                     'LibraryManagmentSystemPrivateKey',
-//                     { expiresIn: '1h' })
+    let loadAdmin;
+    Admin.findOne({ where: { Name: Name } })
+        .then(admin => {
+            if (!admin) {
+                const adminError = new Error('This Admin Name not Found');
+                adminError.statusCode = 401;
+                throw  adminError;
+            }
+            loadAdmin = admin
+            return bcrypt.compare(Password, admin.Password)
+                .then(doMatch => {
+                    if (!doMatch) {
+                        const error = new Error('Wrong password!');
+                        error.statusCode = 401;
+                        throw error;
+                    }
+                    const token = JWT.sign({
+                        adminName: loadAdmin.Name,
+                        adminId: loadAdmin.AdminId.toString(),
+                        isLogged: true
+                    },
+                    'LibraryManagmentSystemPrivateKey',
+                    { expiresIn: '1h' })
 
-//                     res.json({token: token, isLogged: true})
-//                 })
-//                 .catch(err => {
-//                     if (!err.statusCode) {
-//                         err.statusCode = 500;
-//                     }
-//                     next(err);
-//                 });
-//         })
-//         .catch(err => {
-//             next(err)
-//         })
-// }
+                    res.json({token: token, isLogged: true})
+                })
+                .catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err);
+                });
+        })
+        .catch(err => {
+            next(err)
+        })
+}
