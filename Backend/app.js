@@ -15,7 +15,7 @@ const Book = require('./models/Book')
 const Admin = require('./models/Admin')
 
 // Routes
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index')
 const booksRouter = require('./routes/book')
 const authRouter = require('./routes/Auth')
 
