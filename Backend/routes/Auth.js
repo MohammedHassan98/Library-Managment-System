@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const AuthController = require('../controllers/AuthController')
-// TODO Setup signIn and SignUp routes
 
+/* Add New Admin. */
 router.post('/signup',AuthController.SignUp)
 
+/* Authenticate Admin. */
 router.post('/signin',AuthController.SignIn)
 
 
