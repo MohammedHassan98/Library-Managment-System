@@ -20,12 +20,3 @@ router.post('/editBook/:Id', bookController.editBook)
 router.delete('/deleteBook/:Id', bookController.deleteBook)
 
 module.exports = router;
-
-
-// Read Request: get
-// Write Request: post, put, patch
-// Delete Request: delete
-
-
-// get, post, put, delete, patch 
-// HTTP Protcol

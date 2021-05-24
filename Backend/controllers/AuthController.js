@@ -2,21 +2,22 @@ const Admin = require('../models/Admin')
 const bcrypt = require('bcryptjs')
 // const JWT = require('jsonwebtoken');
 
-exports.signUp = (req, res, next) => {
-    const Name = req.body.name;
-    const Mail = req.body.mail;
-    const Password = req.body.password;
-    bcrypt
-        .hash(Password, 12)
+exports.SignUp = (req, res, next) => {
+    const Name = req.body.Name;
+    const Mail = req.body.Mail;
+    const Password = req.body.Password;
+    console.log(Name, Mail, Password)
+    bcrypt.hash(Password, 12)
         .then(hashedPw => {
-            const admin = new Admin(Name, Mail, hashedPw);
-            return admin.save();
+            console.log(hashedPw)
+            const admin = Admin.create({ Name, Mail, Password: hashedPw });
+            return admin;
         })
         .then(admin => {
-            res.status(201).json({ message: 'Admin created!'});
+            res.status(201).json({ message: 'Admin created!' });
         })
         .catch(err => {
-            console.log(err)
+            next(err)
         });
 }
 

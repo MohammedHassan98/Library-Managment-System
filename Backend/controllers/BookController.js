@@ -10,12 +10,6 @@ exports.getAllBooks = (req, res, next) => {
         })
 }
 
-// CRUD
-// C: Create
-// R: Read
-// U: Update
-// D: Delete
-
 exports.getBook = (req, res, next) => {
     const BookId = req.params.Id
     Book.findByPk(BookId)
