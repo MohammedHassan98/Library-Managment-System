@@ -2,7 +2,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">Library Managment System</div>
+    <div className="App mt-5">Library Managment System</div>
   );
 }
 
