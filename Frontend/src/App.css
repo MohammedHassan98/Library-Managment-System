@@ -1,38 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Kufam:wght@400;500;600;700;800;900&display=swap");
 
+html,
 body {
-  background: #f8f8f8;
-  font-family: "Kufam", cursive;
-  font-weight: 600;
+  height: 100%;
+  font-family: 'Arial', 'sans-serif';
+  /* font-family: "Kufam", cursive; */
 }
 
-.login {
-  margin-top: 10%;
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.form-signin {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
 
-.user input[type="text"], .user input[type="password"] {
-  text-align: center;
-  width: 300px;
-  height: 2em;
-  outline: none;
-  box-shadow: 0.15em 0.15em #003ecb;
-  border: 0.1em solid #222222;
-  text-decoration: solid;
-  border-radius: 0.5em;
-  font-family: "Open Sans", sans-serif;
-  font-size: 11pt;
-  font-weight: bold;
-  color: #222222;
-}
-
-.botn {
-  text-align: center;
-  align-self: center;
+.form-signin .form-control {
+  height: auto;
+  padding: 10px;
   font-size: 16px;
-  font-weight: bold;
-  border-radius: 0.5em;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input {
+  width: 500px;
+  text-align: center;
+  border-radius: 20px;
+  color: #3a405b;
+  background-color: #f0f2f8;
+  border: none;
+}
+
+.form-signin button {
+  border-radius: 20px;
+  background-color: #4ce1ab;
+  border: none
+}
+
+.form-signin button:hover {
+  background-color: #3db98b;
+}
+
+.form-signin label {
+  font-size: large;
+  color: #a1a6bb;
+}
+
+::placeholder {
+  font-size: 12px;
 }
