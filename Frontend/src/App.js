@@ -1,8 +1,11 @@
 import './App.css';
+import Login from '../src/components/logIn'
 
 function App() {
   return (
-    <div className="App mt-5">Library Managment System</div>
+    <div className="App">
+      <Login />
+    </div>
   );
 }
 
