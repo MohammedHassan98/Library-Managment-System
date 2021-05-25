@@ -27,6 +27,9 @@ exports.SignIn = (req, res, next) => {
     // const Mail = req.body.Mail
     const Password = req.body.Password;
 
+    console.log(Name)
+    console.log(Password)
+
     let loadAdmin;
     Admin.findOne({ where: { Name: Name } })
         .then(admin => {
