@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import Login from '../src/components/logIn'
-
+import Home from './components/HomePage'
 export default class App extends Component {
 
   state = {
@@ -66,7 +66,7 @@ export default class App extends Component {
           isAuth: resData.isLogged,
           token: resData.token
         })
-        localStorage.setItem('token', resData.data.token);
+        localStorage.setItem('token', resData.token);
         const remainingMilliseconds = 60 * 60 * 1000;
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
@@ -83,17 +83,16 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <Router>
-          {/* <Navbar /> */}
           <div>
             <Switch>
 
               <Route exact path="/">
                 <Login LogIn={this.loginHandler} IsLogged={this.state.isAuth} />
               </Route>
-              {/* 
-            <Route exact path="/home" >
-              <Home />
-            </Route> */}
+
+              <Route exact path="/home" >
+                <Home />
+              </Route>
 
             </Switch>
           </div>

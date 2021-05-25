@@ -6,7 +6,7 @@ body {
   font-family: 'Arial', 'sans-serif';
   /* font-family: "Kufam", cursive; */
 }
-
+/* 
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -20,7 +20,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: white;
-}
+} */
 
 .form-signin {
   display: flex;

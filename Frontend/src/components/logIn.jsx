@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Logo from '../Assets/Images/logo-black.svg'
+import HomePage from './HomePage'
 export default class logIn extends Component {
     state = {
         name: '',
@@ -26,15 +27,15 @@ export default class logIn extends Component {
                     <div class="conatiner-fluid login">
                         <form className="form-signin w-100" onSubmit={this.LogIn}>
                             <div >
-                                <img class="mb-4" src={Logo} alt="" width="72" height="72" />
-                                <h1 class="h3 mb-3 font-weight-normal" style={{ "font-weight": "600", 'color': '#3a405b' }}>Sign In</h1>
+                                <img className="mb-4" src={Logo} alt="" width="72" height="72" />
+                                <h1 className="h3 mb-3 font-weight-normal" style={{ "font-weight": "600", 'color': '#3a405b' }}>Sign In</h1>
                             </div>
                             <div className="mb-5 ">
-                                <label for="exampleInputEmail1" className="form-label">Username *</label>
-                                <input type="text" className="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Your Username" required autofocus onChange={this.handleChange} />
+                                <label htmlFor="exampleInputEmail1" className="form-label">Username *</label>
+                                <input type="text" className="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Your Username" required autoFocus onChange={this.handleChange} />
                             </div>
                             <div className="mb-5 ">
-                                <label for="exampleInputPassword1" className="form-label">Password *</label>
+                                <label htmlFor="exampleInputPassword1" className="form-label">Password *</label>
                                 <input type="password" className="form-control" name="password" placeholder="Enter Your Password" required onChange={this.handleChange} />
                             </div>
                             <button type="submit" className="btn btn-lg btn-primary btn-block w-100">Sign In</button>
@@ -46,7 +47,7 @@ export default class logIn extends Component {
         else {
             return (
                 <div>
-                    Home Page
+                    <HomePage />
                 </div>
             )
         }
