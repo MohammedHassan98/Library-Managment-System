@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Logo from '../Assets/Images/logo-black.svg'
 import HomePage from './HomePage'
+import login from '../Assets/icons/login.svg'
 export default class logIn extends Component {
     state = {
         name: '',
@@ -38,7 +39,9 @@ export default class logIn extends Component {
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password *</label>
                                 <input type="password" className="form-control" name="password" placeholder="Enter Your Password" required onChange={this.handleChange} />
                             </div>
-                            <button type="submit" className="btn btn-lg btn-primary btn-block w-100">Sign In</button>
+                            <button type="submit" className="btn btn-lg btn-primary btn-block w-100">
+                                <img src={login} alt="loginIcon" />    Sign In
+                            </button>
                         </form>
                     </div>
                 </div>

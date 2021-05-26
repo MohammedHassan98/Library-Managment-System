@@ -3,7 +3,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Arial', 'sans-serif';
+  font-family: "Arial", "sans-serif";
   /* font-family: "Kufam", cursive; */
 }
 /* 
@@ -54,7 +54,7 @@ body {
 .form-signin button {
   border-radius: 20px;
   background-color: #4ce1ab;
-  border: none
+  border: none;
 }
 
 .form-signin button:hover {
@@ -68,4 +68,75 @@ body {
 
 ::placeholder {
   font-size: 12px;
+}
+
+.homePage {
+  background-color: #F0F2F6;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+}
+
+.bookCard {
+  width: 16rem;
+  margin: 10px;
+  border-radius: 18px;
+  box-shadow: 2px 4px 10px #adb5bd;
+  background-color: white;
+  border: none;
+}
+
+.bookName {
+  color: #1C1D23;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.bookImg {
+  width: auto;
+  height: 230px;
+  border-radius: 15px;
+}
+
+.bookAuthor {
+  color: #B8BFD3;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.bookDesc {
+  color: #2F4858;
+}
+
+
+
+.footerSection {
+  background-color: #3B4663;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  display: inline-block;
+  color: white;
+}
+
+.footerSection ul {
+  list-style: none;
+  margin-right: 5px;
+}
+
+.footerSection ul li {
+  display: inline-block;
+  padding: 10px;
+}
+
+.card-footer ul {
+  list-style: none;
+  text-align: center;
+}
+
+.card-footer ul li {
+  display: inline-block;
+  margin: 10px;
+  width: 15px;
+  height: 10px;
 }

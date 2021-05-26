@@ -59,7 +59,7 @@ export default class App extends Component {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error('Could not authenticate you!');
         }
-        return res;
+        return res.json();
       }).then(resData => {
         console.log(resData)
         this.setState({
