@@ -25,12 +25,14 @@ export default class Books extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="row">
-                    {this.state.books.map(book => (
-                        <div className="col-2">
-                            <Card book={book} />
-                        </div>
-                    ))}
+                <div className="container">
+                    <div className="row">
+                        {this.state.books.map(book => (
+                            <div className="col-3">
+                                <Card book={book} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </React.Fragment>
         )

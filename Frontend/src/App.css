@@ -4,24 +4,9 @@ html,
 body {
   height: 100%;
   font-family: "Arial", "sans-serif";
-  /* font-family: "Kufam", cursive; */
+  margin: 0;
+  padding: 0;
 }
-/* 
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: white;
-} */
-
 .form-signin {
   display: flex;
   flex-direction: column;
@@ -71,15 +56,16 @@ body {
 }
 
 .homePage {
-  background-color: #F0F2F6;
+  background-color: #f0f2f6;
   width: 100%;
   margin: 0;
   height: 100%;
 }
 
 .bookCard {
-  width: 16rem;
+  width: 20rem;
   margin: 10px;
+  margin-top: 15px;
   border-radius: 18px;
   box-shadow: 2px 4px 10px #adb5bd;
   background-color: white;
@@ -87,7 +73,7 @@ body {
 }
 
 .bookName {
-  color: #1C1D23;
+  color: #1c1d23;
   font-weight: bold;
   font-size: 20px;
 }
@@ -99,19 +85,17 @@ body {
 }
 
 .bookAuthor {
-  color: #B8BFD3;
+  color: #b8bfd3;
   font-size: 12px;
   font-style: italic;
 }
 
 .bookDesc {
-  color: #2F4858;
+  color: #2f4858;
 }
 
-
-
 .footerSection {
-  background-color: #3B4663;
+  background-color: #3b4663;
   width: 100%;
   height: auto;
   margin: 0;
@@ -139,4 +123,8 @@ body {
   margin: 10px;
   width: 15px;
   height: 10px;
+}
+
+footer {
+  overflow-x: hidden;
 }

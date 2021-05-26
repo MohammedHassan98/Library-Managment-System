@@ -10,7 +10,7 @@ export default class HomePage extends Component {
                     <NavBar />
                 </div>
                 <div className="row">
-                    <div className="homePage">
+                    <div className="homePage" style={{paddingTop: '10px'}}>
                         <Books />
                     </div>
                 </div>
