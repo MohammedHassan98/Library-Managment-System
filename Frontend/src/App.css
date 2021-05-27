@@ -63,7 +63,8 @@ body {
 }
 
 .bookCard {
-  width: 20rem;
+  width: 17rem;
+  height: auto;
   margin: 10px;
   margin-top: 15px;
   border-radius: 18px;
@@ -76,6 +77,11 @@ body {
   color: #1c1d23;
   font-weight: bold;
   font-size: 20px;
+  text-decoration: none;
+}
+
+.bookName:hover {
+  color: #a1a6bb;
 }
 
 .bookImg {
