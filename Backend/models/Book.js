@@ -20,7 +20,11 @@ const Book = db.define('Books', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    Description: {
+    ShortDescription: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    FullDescription: {
         type: Sequelize.STRING,
         allowNull: false
     },

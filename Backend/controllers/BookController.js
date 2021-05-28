@@ -26,7 +26,41 @@ exports.getBook = (req, res, next) => {
         })
 }
 
-exports.addBook = (req, res, next) => { }
+exports.addBook = (req, res, next) => {
+    if (!req.file) {
+        const error = new Error('No Image Provided');
+        error.statusCode = 422;
+        throw error;
+    }
+    // const errors = validationResult(req)
+    // if (!errors.isEmpty()) {
+    //     const error = new Error('Validation failed, entered data is incorrect.');
+    //     error.statusCode = 422;
+    //     throw error;
+    // }
+
+    const Name = req.body.Name;
+    const ShortDescription = req.body.ShortDescription;
+    const FullDescription = req.body.FullDescription;
+    const CoverImageUrl = req.file.path;
+    const BookAuthor = req.body.BookAuthor
+    const Pages = req.body.Pages
+    const Price = req.body.Price
+    const Category = req.body.Category
+    const Quantity = req.body.Quantity
+
+    const book = new Book(Name, ShortDescription, FullDescription, CoverImageUrl, BookAuthor, Pages, Price, Category, Quantity)
+    book.save()
+        .then(result => {
+            res.status(200).json({
+                message: 'Book Is Created Successfully',
+                result
+            });
+        })
+        .catch(err => {
+            next(err);
+        });
+}
 
 exports.editBook = (req, res, next) => { }
 

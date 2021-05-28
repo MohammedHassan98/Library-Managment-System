@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser')
+const multer = require('multer');
+var compression = require('compression')
 
 const app = express();
 
@@ -29,6 +31,32 @@ const indexRouter = require('./routes/index')
 const booksRouter = require('./routes/book')
 const authRouter = require('./routes/Auth')
 
+// Handle Image Upload 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'images');
+  },
+  filename: (req, file, callback) => {
+    callback(null, new Date().toISOString() + '-' + file.originalname);
+    console.log(file)
+  }
+});
+
+const fileFiltration = (req, file, callback) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    callback(null, true);
+  } else {
+    callback(null, false);
+  }
+};
+
+app.use(compression());
+app.use(multer({ storage: fileStorage, fileFilter: fileFiltration }).single('image'));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
