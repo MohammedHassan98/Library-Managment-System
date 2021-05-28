@@ -44,12 +44,13 @@ exports.addBook = (req, res, next) => {
     const Category = req.body.Category
     const Quantity = req.body.Quantity
 
-    const book = new Book({ Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity })
-    book.save().then(result => {
-        res.status(200).json("Book has Been created successfully")
-    }).catch(err => {
-        next(err)
-    })
+
+    Book.create({ Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity })
+        .then(result => {
+            res.status(200).json("Book has Been created successfully")
+        }).catch(err => {
+            next(err)
+        })
 }
 
 exports.editBook = (req, res, next) => {
