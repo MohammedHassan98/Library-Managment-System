@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AddIcon from '../Assets/icons/add.svg'
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import search from "../Assets/icons/search.svg";
 export default class NavBar extends Component {
 
     state = {
@@ -10,10 +11,10 @@ export default class NavBar extends Component {
         FullDescription: '',
         CoverImageUrl: {},
         BookAuthor: '',
-        Pages: 0,
-        Price: 0,
+        Pages: null,
+        Price: null,
         Category: '',
-        Quantity: 0,
+        Quantity: null,
     }
 
     handleChange = (event) => {
@@ -54,31 +55,29 @@ export default class NavBar extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: 'white' }}>
+                    <Link className="navbar-brand" style={{ color: '#2B8BFF', fontWeight: '800', fontSize: '20px', padding: '2px' }} to="/home">Library</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <div>
                         <ul className="navbar-nav">
-                            <li className="nav-item active">
-                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                            </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Features</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link">
-                                    <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        <img src={AddIcon} alt="addIcon" />
-                                    </button>
-
-                                </a>
+                                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <img src={AddIcon} alt="addIcon" />
+                                </button>
+                                Add New Book
                             </li>
                         </ul>
+                    </div>
+
+                    <div className="navbar-nav">
+                        <form>
+                            <div style={{display: 'inline-block', width: '80rem'}}>
+                                <input type="text" placeholder="Search" className="form-control ms-3 w-100" />
+                            </div>
+                            <button className="btn btn-primary ms-4">Search</button>
+                        </form>
                     </div>
                 </nav>
 
@@ -95,49 +94,49 @@ export default class NavBar extends Component {
 
                                     <div className="mb-3">
                                         <label htmlFor="BookName" className="form-label addBookLabels">Book Name</label>
-                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} name="Name"
+                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} name="Name" placeholder="Book Name"
                                             onChange={this.handleChange} value={this.state.Name} id="BookName" aria-describedby="emailHelp" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="BookAuthor" className="form-label addBookLabels">Book Auhtor</label>
-                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="BookAuthor"
+                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="BookAuthor" placeholder="Book Author"
                                             onChange={this.handleChange} value={this.state.BookAuthor} name="BookAuthor" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="ShortDescription" className="form-label addBookLabels">Short Description</label>
-                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="ShortDescription"
+                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="ShortDescription" placeholder="Short Description"
                                             onChange={this.handleChange} value={this.state.ShortDescription} name="ShortDescription" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="FullDescription" className="form-label addBookLabels">Full Description</label>
-                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="FullDescription"
+                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="FullDescription" placeholder="Full Description"
                                             onChange={this.handleChange} value={this.state.FullDescription} name="FullDescription" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="Price" className="form-label addBookLabels">Price</label>
-                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Price"
+                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Price" placeholder="Book Price"
                                             onChange={this.handleChange} value={this.state.Price} name="Price" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="Pages" className="form-label addBookLabels">Pages</label>
-                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Pages"
+                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Pages" placeholder="Book Pages Number"
                                             onChange={this.handleChange} value={this.state.Pages} name="Pages" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="Quantity" className="form-label addBookLabels">Quantity</label>
-                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Quantity"
+                                        <input type="number" className="form-control" style={{ borderRadius: '3px' }} id="Quantity" placeholder="Quantity"
                                             onChange={this.handleChange} value={this.state.Quantity} name="Quantity" required />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="CoverImageUrl" className="form-label addBookLabels">CoverImageUrl</label>
-                                        <input type="file" className="form-control" style={{ borderRadius: '3px' }} id="CoverImageUrl"
+                                        <input type="file" className="form-control" style={{ borderRadius: '3px' }} id="CoverImageUrl" placeholder="Book Cover"
                                             onChange={this.handleFileChange} name="CoverImageUrl" required />
                                     </div>
                                     <div className="modal-footer">
