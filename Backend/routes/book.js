@@ -16,6 +16,9 @@ router.post('/addBook', bookController.addBook)
 /* Edit Book. */
 router.post('/editBook/:Id', bookController.editBook)
 
+/* Edit Book. */
+router.post('/sellBook/:Id', bookController.editBook)
+
 /* Delete Book From DB. */
 router.delete('/deleteBook/:Id', bookController.deleteBook)
 

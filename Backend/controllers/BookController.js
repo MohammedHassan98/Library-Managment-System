@@ -87,12 +87,35 @@ exports.editBook = (req, res, next) => {
 
 exports.sellBook = (req, res, next) => {
     const BookId = req.params.Id
-    Book.findByPk(BookId).then(book => {
-        book.Quantity = book.Quantity - 1
-        res.status(200).json('Book has been sold successfully')
-    }).catch(err => {
-        next(err)
-    })
+    const Name = req.body.Name;
+    const ShortDescription = req.body.ShortDescription;
+    const FullDescription = req.body.FullDescription;
+    const BookAuthor = req.body.BookAuthor
+    const Pages = req.body.Pages
+    const Price = req.body.Price
+    const Category = req.body.Category
+    const Quantity = req.body.Quantity
+
+    Book.findByPk(BookId)
+        .then(book => {
+            book.Name = Name;
+            book.ShortDescription = ShortDescription;
+            book.FullDescription = FullDescription;
+            book.BookAuthor = BookAuthor;
+            book.CoverImageUrl = book.CoverImageUrl
+            book.Pages = Pages;
+            book.Price = Price;
+            book.Category = Category;
+            book.Quantity = Quantity - 1;
+
+            return book.save()
+        })
+        .then(response => {
+            res.status(200).json('Book has been sold successfully')
+        })
+        .catch(err => {
+            next(err)
+        })
 
 }
 
