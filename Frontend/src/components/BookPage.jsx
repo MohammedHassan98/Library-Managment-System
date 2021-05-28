@@ -35,7 +35,6 @@ class BookPage extends Component {
             .then(respose => {
                 console.log(respose)
                 this.props.history.push(`/home`)
-                // return <Redirect to='/home' />
             }).catch(err => {
                 console.log(err)
             })
