@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
 import Swal from 'sweetalert2'
-
+import cart from "../Assets/icons/add-to-cart.svg";
+import del from "../Assets/icons/delete.svg";
+import edit from "../Assets/icons/edit.svg";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 class BookPage extends Component {
     state = {
         book: {}
@@ -64,17 +68,30 @@ class BookPage extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <h1>{this.state.book.Name}</h1>
-                    <p>{this.state.book.Category}</p>
-                    <p>{this.state.book.BookAuthor}</p>
-                    <p>{this.state.book.Description}</p>
-                    <p>{this.state.book.Price}</p>
-                    <p>{this.state.book.Pages}</p>
-                    <p>{this.state.book.Quantity}</p>
-                </div>
+                <NavBar />
+                <div className="container-fluid" style={{ backgroundColor: '#f0f2f6', width: "100%" }}>
+                    <div class="container" style={{backgroundColor:'white', borderRadius: '30px', boxShadow: ' 0 4px 8px 0 rgba(0,0,0,0.2)', marginBottom: '20px'}}>
+                        <div class="book">
+                            <div class="image">
+                                <img src={`http://localhost:5000/${this.state.book.CoverImageUrl}`} alt="starry" />
+                            </div>
+                            <div class="text">
+                                <div class="name">{this.state.book.Name}</div>
+                                <div class="name author">{this.state.book.BookAuthor}</div>
+                                <div class="name author">Price: {this.state.book.Price}$</div>
+                                <div class="name author">Number Of Pages: {this.state.book.Pages} Page</div>
+                                <div class="name details"> <strong>Description:   </strong>  {this.state.book.FullDescription}</div>
+                            </div>
+                        </div>
 
-                <button className="btn btn-danger" onClick={this.deleteBook}>Delete</button>
+                        <div class="actions">
+                            <button href="#" class="btn action"><img src={edit} alt="edit" /></button>
+                            <button href="#" class="btn action" onClick={this.deleteBook}><img src={del} alt="delete" /></button>
+                            <button href="#" class="btn action"><img src={cart} alt="sell" /></button>
+                        </div>
+                    </div>
+                </div>
+                <Footer />
             </div>
         )
     }

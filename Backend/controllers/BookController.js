@@ -85,6 +85,17 @@ exports.editBook = (req, res, next) => {
         });
 }
 
+exports.sellBook = (req, res, next) => {
+    const BookId = req.params.Id
+    Book.findByPk(BookId).then(book => {
+        book.Quantity = book.Quantity - 1
+        res.status(200).json('Book has been sold successfully')
+    }).catch(err => {
+        next(err)
+    })
+
+}
+
 exports.deleteBook = (req, res, next) => {
     const BookId = req.params.Id
     Book.findByPk(BookId)

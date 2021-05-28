@@ -144,3 +144,57 @@ body {
   opacity: 50%;
   font-weight: bolder;
 }
+
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 70px;
+}
+
+.book {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: 4px;
+  margin-right: 200px;
+}
+
+
+.image img {
+  border-radius: 0.5em;
+  margin-top: 20px;
+  vertical-align: middle;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.name {
+  text-align: left;
+  display: flex;
+  margin: 30px;
+  font-size: 24pt;
+  font-weight: 800;
+}
+.author{
+  font-size: 14pt;
+  font-weight: 500;
+}
+.details{
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+
+}
+
+.action{
+  margin-bottom: 30px;
+}
