@@ -27,20 +27,12 @@ exports.getBook = (req, res, next) => {
 }
 
 exports.addBook = (req, res, next) => {
+
     if (!req.file) {
         const error = new Error('No Image Provided');
         error.statusCode = 422;
         throw error;
     }
-    // const errors = validationResult(req)
-    // if (!errors.isEmpty()) {
-    //     const error = new Error('Validation failed, entered data is incorrect.');
-    //     error.statusCode = 422;
-    //     throw error;
-    // }
-
-    console.log (res.body)
-    console.log(req.file)
 
     const Name = req.body.Name;
     const ShortDescription = req.body.ShortDescription;
@@ -52,20 +44,19 @@ exports.addBook = (req, res, next) => {
     const Category = req.body.Category
     const Quantity = req.body.Quantity
 
-    const book = new Book(Name, ShortDescription, FullDescription, CoverImageUrl, BookAuthor, Pages, Price, Category, Quantity)
-    book.save()
-        .then(result => {
-            res.status(200).json({
-                message: 'Book Is Created Successfully',
-                result
-            });
-        })
-        .catch(err => {
-            next(err);
-        });
+    console.log(Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity, req.file)
+
+    const book = new Book({ Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity })
+    book.save().then(result => {
+        res.status(200).json("Book has Been created successfully")
+    }).catch(err => {
+        next(err)
+    })
 }
 
-exports.editBook = (req, res, next) => { }
+exports.editBook = (req, res, next) => {
+    console.log(req.body)
+}
 
 exports.deleteBook = (req, res, next) => {
     const BookId = req.params.Id

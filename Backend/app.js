@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const multer = require('multer');
 var compression = require('compression')
+const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -26,7 +27,6 @@ const Book = require('./models/Book')
 const Admin = require('./models/Admin')
 
 // Routes
-const indexRouter = require('./routes/index')
 const booksRouter = require('./routes/book')
 const authRouter = require('./routes/Auth')
 
@@ -53,17 +53,17 @@ const fileFiltration = (req, file, callback) => {
 };
 
 app.use(logger('dev'));
+// app.use(bodyParser.json())
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(multer({ storage: fileStorage, fileFilter: fileFiltration }).single('CoverImageUrl'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression());
 
 
 // Routes
-app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/auth', authRouter);
 
@@ -72,6 +72,7 @@ app.use('/auth', authRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {

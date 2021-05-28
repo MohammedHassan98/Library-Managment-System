@@ -41,7 +41,6 @@ export default class NavBar extends Component {
 
         fetch('http://localhost:5000/books/addBook', {
             method: 'POST',
-            // headers: { 'Content-Type': 'multipart/form-data' },
             body: formData
         })
             .then(res => res.json())
