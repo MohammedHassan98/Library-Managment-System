@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser')
 const multer = require('multer');
 var compression = require('compression')
 
@@ -55,15 +54,15 @@ const fileFiltration = (req, file, callback) => {
 };
 
 app.use(compression());
-app.use(multer({ storage: fileStorage, fileFilter: fileFiltration }).single('image'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(multer({ storage: fileStorage, fileFilter: fileFiltration }).single('CoverImageUrl'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json())
 
+// Routes
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/auth', authRouter);

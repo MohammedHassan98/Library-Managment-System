@@ -39,6 +39,8 @@ exports.addBook = (req, res, next) => {
     //     throw error;
     // }
 
+    console.log (res.body)
+
     const Name = req.body.Name;
     const ShortDescription = req.body.ShortDescription;
     const FullDescription = req.body.FullDescription;

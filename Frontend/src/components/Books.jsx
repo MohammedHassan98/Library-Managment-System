@@ -29,7 +29,7 @@ export default class Books extends Component {
                     <div className="row">
                         {this.state.books.map(book => (
                             <div className="col-3">
-                                <Card book={book} />
+                                <Card book={book} key={book.BookId}/>
                             </div>
                         ))}
                     </div>

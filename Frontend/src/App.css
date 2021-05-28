@@ -145,3 +145,9 @@ footer {
   width: 10px;
   height: 10px;
 }
+
+.addBookLabels{
+  color: black;
+  opacity: 50%;
+  font-weight: bolder;
+}
