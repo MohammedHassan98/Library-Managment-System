@@ -111,8 +111,9 @@ body {
   text-align: center;
 }
 
-.row {
+.footerSection .row {
   margin-right: 0;
+  margin-left: 0;
 }
 
 .footerSection ul {
@@ -131,14 +132,6 @@ body {
 
 .links:hover{
   color: #3db98b;
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
 }
 
 .SocialIcon {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import AddIcon from '../Assets/icons/add.svg'
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 export default class NavBar extends Component {
 
     state = {
@@ -28,7 +27,6 @@ export default class NavBar extends Component {
 
     addBook = (e) => {
         e.preventDefault()
-        const MySwal = withReactContent(Swal)
         const formData = new FormData()
         formData.append('Name', this.state.Name)
         formData.append('ShortDescription', this.state.ShortDescription)
@@ -48,7 +46,7 @@ export default class NavBar extends Component {
         })
             .then(res => res.json())
             .then(JSONres => {
-                MySwal.fire({
+                Swal.fire({
                     position: 'center',
                     icon: 'success',
                     title: JSONres,
@@ -56,7 +54,7 @@ export default class NavBar extends Component {
                     timer: 1500
                 })
             }).catch(err => {
-                MySwal.fire({
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong, Please try again',
@@ -69,7 +67,7 @@ export default class NavBar extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: 'white' }}>
-                    <Link className="navbar-brand" style={{ color: '#2B8BFF', fontWeight: '800', fontSize: '20px', padding: '2px' }} to="/home">Library</Link>
+                    <Link className="navbar-brand" style={{ color: '#2B8BFF', fontWeight: '800', fontSize: '20px', padding: '5px' }} to="/home">Library</Link>
                     <div>
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -122,8 +120,14 @@ export default class NavBar extends Component {
 
                                     <div className="mb-3">
                                         <label htmlFor="FullDescription" className="form-label addBookLabels">Full Description</label>
-                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="FullDescription" placeholder="Full Description"
+                                        <textarea type="text" className="form-control" style={{ borderRadius: '3px' }} id="FullDescription" placeholder="Full Description"
                                             onChange={this.handleChange} value={this.state.FullDescription} name="FullDescription" required />
+                                    </div>
+
+                                    <div className="mb-3">
+                                        <label htmlFor="Category" className="form-label addBookLabels">Category</label>
+                                        <input type="text" className="form-control" style={{ borderRadius: '3px' }} id="Category" placeholder="Category"
+                                            onChange={this.handleChange} value={this.state.Category} name="Category" required />
                                     </div>
 
                                     <div className="mb-3">
@@ -151,7 +155,7 @@ export default class NavBar extends Component {
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" className="btn" style={{ backgroundColor: '#3db98b', color: 'white', fontWeight: 'bolder' }} data-bs-dismiss="modal" >Add</button>
+                                        <button type="submit" className="btn" style={{ backgroundColor: '#3db98b', color: 'white', fontWeight: 'bolder' }} >Add</button>
                                     </div>
                                 </form>
                             </div>

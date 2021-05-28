@@ -5,19 +5,11 @@ import Footer from './Footer'
 export default class HomePage extends Component {
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <NavBar />
-                </div>
-                <div className="row">
-                    <div className="homePage" style={{ paddingTop: '10px' }}>
-                        <Books />
-                    </div>
-                </div>
-                <div>
-                    <Footer />
-                </div>
-            </div>
+            <React.Fragment>
+                <NavBar />
+                <div className="homePage" style={{ paddingTop: '10px' }}><Books /> </div>
+                <Footer />
+            </React.Fragment>
         )
     }
 }

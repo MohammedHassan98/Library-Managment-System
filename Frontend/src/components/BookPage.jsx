@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 class BookPage extends Component {
     state = {
@@ -28,7 +27,6 @@ class BookPage extends Component {
 
     deleteBook = (e) => {
         e.preventDefault()
-        const MySwal = withReactContent(Swal)
         let Id = this.props.match.params.id
 
         Swal.fire({
