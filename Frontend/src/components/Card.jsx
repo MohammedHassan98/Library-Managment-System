@@ -26,19 +26,6 @@ export default function Card(props) {
     //     console.log('test')
     // }
 
-    // deleteBook = (e) => {
-    //     e.preventDefault()
-    //     let Id = this.props.book.BookId
-    //     fetch(`http://localhost:5000/books/deleteBook/${Id}`, {
-    //         method: 'DELETE',
-    //         headers: { 'Content-Type': 'application/json' }
-    //     }).then(res => res.json())
-    //         .then(respose => {
-    //             console.log(respose)
-    //         }).catch(err => {
-    //             console.log(err)
-    //         })
-    // }
 
     // addBook = () => { }
 

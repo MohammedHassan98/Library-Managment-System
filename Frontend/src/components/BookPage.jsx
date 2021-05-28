@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
+// import { Redirect } from 'react-router-dom'
 
 class BookPage extends Component {
     state = {
@@ -23,6 +24,23 @@ class BookPage extends Component {
             })
     }
 
+
+    deleteBook = (e) => {
+        e.preventDefault()
+        let Id = this.props.match.params.id
+        fetch(`http://localhost:5000/books/deleteBook/${Id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => res.json())
+            .then(respose => {
+                console.log(respose)
+                this.props.history.push(`/home`)
+                // return <Redirect to='/home' />
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
         return (
             <div>
@@ -36,7 +54,7 @@ class BookPage extends Component {
                     <p>{this.state.book.Quantity}</p>
                 </div>
 
-                <button className="btn btn-danger">Delete</button>
+                <button className="btn btn-danger" onClick={this.deleteBook}>Delete</button>
             </div>
         )
     }
