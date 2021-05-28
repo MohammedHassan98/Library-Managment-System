@@ -36,8 +36,7 @@ const fileStorage = multer.diskStorage({
     callback(null, 'images');
   },
   filename: (req, file, callback) => {
-    callback(null, new Date().toISOString() + '-' + file.originalname);
-    console.log(file)
+    callback(null, new Date().toISOString() + '-' + file.originalname)
   }
 });
 
@@ -53,14 +52,15 @@ const fileFiltration = (req, file, callback) => {
   }
 };
 
-app.use(compression());
+app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(multer({ storage: fileStorage, fileFilter: fileFiltration }).single('CoverImageUrl'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(logger('dev'));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
+
 
 // Routes
 app.use('/', indexRouter);

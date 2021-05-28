@@ -40,6 +40,7 @@ exports.addBook = (req, res, next) => {
     // }
 
     console.log (res.body)
+    console.log(req.file)
 
     const Name = req.body.Name;
     const ShortDescription = req.body.ShortDescription;

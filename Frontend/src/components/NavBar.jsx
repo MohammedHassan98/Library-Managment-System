@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import AddIcon from '../Assets/icons/add.svg'
-import axios from "axios";
 import { Link } from "react-router-dom";
-import search from "../Assets/icons/search.svg";
 export default class NavBar extends Component {
 
     state = {
@@ -28,28 +26,26 @@ export default class NavBar extends Component {
 
     addBook = (e) => {
         e.preventDefault()
-        const data = new FormData()
-        data.append('Name', this.state.Name)
-        data.append('ShortDescription', this.state.ShortDescription)
-        data.append('FullDescription', this.state.FullDescription)
-        data.append('CoverImageUrl', this.state.CoverImageUrl)
-        data.append('BookAuthor', this.state.BookAuthor)
-        data.append('Pages', this.state.Pages)
-        data.append('Price', this.state.Price)
-        data.append('Category', this.state.Category)
-        data.append('Quantity', this.state.Quantity)
+        const formData = new FormData()
+        formData.append('Name', this.state.Name)
+        formData.append('ShortDescription', this.state.ShortDescription)
+        formData.append('FullDescription', this.state.FullDescription)
+        formData.append('CoverImageUrl', this.state.CoverImageUrl)
+        formData.append('BookAuthor', this.state.BookAuthor)
+        formData.append('Pages', this.state.Pages)
+        formData.append('Price', this.state.Price)
+        formData.append('Category', this.state.Category)
+        formData.append('Quantity', this.state.Quantity)
 
-        console.log(data)
+        console.log(formData)
 
-        axios.post('http://localhost:5000/books/addBook', data)
-        // axios({
-        //     method: 'post',
-        //     url: 'http://localhost:5000/books/addBook',
-        //     data: data,
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data'
-        //     }
-        // }).then(JSONres => { console.log(JSONres) }).catch()
+        fetch('http://localhost:5000/books/addBook', {
+            method: 'POST',
+            // headers: { 'Content-Type': 'multipart/form-data' },
+            body: formData
+        })
+            .then(res => res.json())
+            .then(JSONres => { console.log(JSONres) }).catch()
     }
 
     render() {
@@ -57,9 +53,6 @@ export default class NavBar extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: 'white' }}>
                     <Link className="navbar-brand" style={{ color: '#2B8BFF', fontWeight: '800', fontSize: '20px', padding: '2px' }} to="/home">Library</Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
                     <div>
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -73,7 +66,7 @@ export default class NavBar extends Component {
 
                     <div className="navbar-nav">
                         <form>
-                            <div style={{display: 'inline-block', width: '80rem'}}>
+                            <div style={{ display: 'inline-block', width: '50rem' }}>
                                 <input type="text" placeholder="Search" className="form-control ms-3 w-100" />
                             </div>
                             <button className="btn btn-primary ms-4">Search</button>

@@ -6,10 +6,8 @@ exports.SignUp = (req, res, next) => {
     const Name = req.body.Name;
     const Mail = req.body.Mail;
     const Password = req.body.Password;
-    console.log(Name, Mail, Password)
     bcrypt.hash(Password, 12)
         .then(hashedPw => {
-            console.log(hashedPw)
             const admin = Admin.create({ Name, Mail, Password: hashedPw });
             return admin;
         })
@@ -26,9 +24,6 @@ exports.SignIn = (req, res, next) => {
     const Name = req.body.Name;
     // const Mail = req.body.Mail
     const Password = req.body.Password;
-
-    console.log(Name)
-    console.log(Password)
 
     let loadAdmin;
     Admin.findOne({ where: { Name: Name } })
