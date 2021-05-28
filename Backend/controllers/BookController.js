@@ -44,8 +44,6 @@ exports.addBook = (req, res, next) => {
     const Category = req.body.Category
     const Quantity = req.body.Quantity
 
-    console.log(Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity, req.file)
-
     const book = new Book({ Name, ShortDescription, FullDescription, BookAuthor, CoverImageUrl, Category, Pages, Price, Quantity })
     book.save().then(result => {
         res.status(200).json("Book has Been created successfully")
@@ -55,7 +53,35 @@ exports.addBook = (req, res, next) => {
 }
 
 exports.editBook = (req, res, next) => {
-    console.log(req.body)
+    const BookId = req.params.Id
+
+    const Name = req.body.Name;
+    const ShortDescription = req.body.ShortDescription;
+    const FullDescription = req.body.FullDescription;
+    const BookAuthor = req.body.BookAuthor
+    const Pages = req.body.Pages
+    const Price = req.body.Price
+    const Category = req.body.Category
+    const Quantity = req.body.Quantity
+
+    Book.findByPk(BookId)
+        .then((book) => {
+            book.Name = Name;
+            book.ShortDescription = ShortDescription;
+            book.FullDescription = FullDescription;
+            book.BookAuthor = BookAuthor;
+            book.Pages = Pages;
+            book.Price = Price;
+            book.Category = Category;
+            book.Quantity = Quantity;
+
+            return book.save();
+        }).then(result => {
+            res.status(200).json("Book has been edited Successfully")
+        })
+        .catch((err) => {
+            next(err)
+        });
 }
 
 exports.deleteBook = (req, res, next) => {
