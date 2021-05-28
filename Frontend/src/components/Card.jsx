@@ -9,10 +9,7 @@ export default function Card(props) {
             <div className="card-body">
                 <h5 className="card-title bookName">
                     <Link className="bookName" to={{
-                        pathname: `/books/${props.book.BookId}`,
-                        state: {
-                            Book: props.book
-                        }
+                        pathname: `/books/${props.book.BookId}`
                     }}>
                         {props.book.Name}
                     </Link>

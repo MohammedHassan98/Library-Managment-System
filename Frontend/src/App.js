@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Login from '../src/components/logIn'
 import Home from './components/HomePage'
+import BookPage from './components/BookPage'
 export default class App extends Component {
 
   state = {
@@ -92,6 +93,10 @@ export default class App extends Component {
 
               <Route exact path="/home" >
                 <Home />
+              </Route>
+
+              <Route exact path="/books/:id" >
+                <BookPage />
               </Route>
 
             </Switch>
