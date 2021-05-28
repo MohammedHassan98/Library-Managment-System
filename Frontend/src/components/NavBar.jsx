@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import AddIcon from '../Assets/icons/add.svg'
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 export default class NavBar extends Component {
 
     state = {
@@ -26,6 +28,7 @@ export default class NavBar extends Component {
 
     addBook = (e) => {
         e.preventDefault()
+        const MySwal = withReactContent(Swal)
         const formData = new FormData()
         formData.append('Name', this.state.Name)
         formData.append('ShortDescription', this.state.ShortDescription)
@@ -44,7 +47,22 @@ export default class NavBar extends Component {
             body: formData
         })
             .then(res => res.json())
-            .then(JSONres => { console.log(JSONres) }).catch()
+            .then(JSONres => {
+                MySwal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: JSONres,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }).catch(err => {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong, Please try again',
+                    footer: `Error Description: ${err.message}`
+                })
+            })
     }
 
     render() {
@@ -133,7 +151,7 @@ export default class NavBar extends Component {
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" className="btn" style={{ backgroundColor: '#3db98b', color: 'white', fontWeight: 'bolder' }}>Add</button>
+                                        <button type="submit" className="btn" style={{ backgroundColor: '#3db98b', color: 'white', fontWeight: 'bolder' }} data-bs-dismiss="modal" >Add</button>
                                     </div>
                                 </form>
                             </div>

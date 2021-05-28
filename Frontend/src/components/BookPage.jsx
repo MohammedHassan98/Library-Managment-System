@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
-// import { Redirect } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 class BookPage extends Component {
     state = {
@@ -27,17 +28,39 @@ class BookPage extends Component {
 
     deleteBook = (e) => {
         e.preventDefault()
+        const MySwal = withReactContent(Swal)
         let Id = this.props.match.params.id
-        fetch(`http://localhost:5000/books/deleteBook/${Id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
-        }).then(res => res.json())
-            .then(respose => {
-                console.log(respose)
-                this.props.history.push(`/home`)
-            }).catch(err => {
-                console.log(err)
-            })
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/books/deleteBook/${Id}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(res => res.json())
+                    .then(respose => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        this.props.history.push(`/home`)
+                    }).catch(err => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!, Please Try Again in Moments',
+                        })
+                    })
+            }
+        })
     }
 
     render() {
